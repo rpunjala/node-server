@@ -2,6 +2,7 @@ const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
 
+const port = process.env.PORT || 3002;
 var app = express();
 
 hbs.registerHelper('getCurrentYear', () =>{
@@ -31,11 +32,11 @@ fs.appendFileSync('server.log', serverlog + '\n' );
 next();
 });
 
-app.use((req,res, next) => {
+// app.use((req,res, next) => {
 
-  res.render('Maintanance.hbs');  
- next();
-  });
+//   res.render('Maintanance.hbs');  
+//  next();
+//   });
 
 
 app.get('/', (req,res) => {
@@ -66,4 +67,7 @@ res.send ({
 })
 });
 
-app.listen(3002);
+app.listen(port, () =>{
+console.log(`Server is up on port ${port}`); 
+
+});
